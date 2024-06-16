@@ -1,0 +1,15 @@
+name: deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: environment
+
+jobs:
+  deploy:
+    uses: budproj/github-actions/.github/workflows/deploy.yaml@main
+    with:
+      environment: ${{ inputs.environment }}
+      k8s_repository__ref: feat/canary-cluster
+    secrets: inherit
